@@ -1,0 +1,24 @@
+Python 想调用java方法需要依赖Jpype,但是Jpype再windows中需要依赖Microsoft Visual Studio 14.0工具库，以下为安装Jpype遇到的一些问题：
+1.库选择：注意选择时版本要一致，如32位系统就所有版本选择32位,切勿32，64混用
+JDK1.8 
+Python3.6
+Jpype1-py3（可以在GitHub上下载源码地址：https://github.com/tcalmant/jpype-py3/，或者在IDE中直接下载如Pycharm）
+安装方式：JDK,PYTHON无需多说
+Jpype1-py3源码安装直接用命令：python setup.py install
+IDE直接在工具中点点点、、、、、
+2.第一个问题：error: Microsoft Visual C++ 14.0 is required. Get it with "Microsoft Visual C++ Build Tools": http://landinghub.visualstudio.com/visual-cpp-build-tools
+此问题可能是由于VC安装不正确，或者VC版本不一致导致，解决版本就是安装Visio Studio 2015即可
+3.第二个问题：
+d:\program files\python36\include\pyconfig.h(222): fatal error C1083: 无法打开包括文件: “basetsd.h”: No such file or directory
+error: command 'D:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\BIN\\x86_amd64\\cl.exe' failed with exit status 2
+度娘给的答案没解决，就是重装了lxml和Visual Studio 然后解决了。。。。。。
+4.第四个问题，详细信息如下
+D:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\BIN\x86_amd64\link.exe /nologo /INCREMENTAL:NO /LTCG /DLL /MANIFEST:EMBED,ID=2 /MANIFESTUAC:NO "/LIBPATH:D:\Program Files\Java\jdk1.8.0_121\lib" "/LIBPATH:D:\Program Files\Python36\libs" "/LIBPATH:D:\Program Files\Python36\PCbuild\amd64" "/LIBPATH:D:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\LIB\amd64" "/LIBPATH:D:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\LIB\amd64" "/LIBPATH:C:\Program Files (x86)\Windows Kits\10\lib\10.0.16299.0\ucrt\x64" "/LIBPATH:C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\lib\um\x64" "/LIBPATH:C:\Program Files (x86)\Windows Kits\10\lib\10.0.16299.0\um\x64" Advapi32.lib /EXPORT:PyInit__jpype build\temp.win-amd64-3.6\Release\native\common\jp_array.obj build\temp.win-amd64-3.6\Release\native\common\jp_arrayclass.obj build\temp.win-amd64-3.6\Release\native\common\jp_class.obj build\temp.win-amd64-3.6\Release\native\common\jp_classbase.obj build\temp.win-amd64-3.6\Release\native\common\jp_env.obj build\temp.win-amd64-3.6\Release\native\common\jp_field.obj build\temp.win-amd64-3.6\Release\native\common\jp_invocationhandler.obj build\temp.win-amd64-3.6\Release\native\common\jp_javaenv.obj build\temp.win-amd64-3.6\Release\native\common\jp_javaenv_autogen.obj build\temp.win-amd64-3.6\Release\native\common\jp_jniutil.obj build\temp.win-amd64-3.6\Release\native\common\jp_method.obj build\temp.win-amd64-3.6\Release\native\common\jp_methodoverload.obj build\temp.win-amd64-3.6\Release\native\common\jp_monitor.obj build\temp.win-amd64-3.6\Release\native\common\jp_object.obj build\temp.win-amd64-3.6\Release\native\common\jp_objecttypes.obj build\temp.win-amd64-3.6\Release\native\common\jp_platform_linux.obj build\temp.win-amd64-3.6\Release\native\common\jp_platform_win32.obj build\temp.win-amd64-3.6\Release\native\common\jp_primitivetypes.obj build\temp.win-amd64-3.6\Release\native\common\jp_primitivetypes_autogen.obj build\temp.win-amd64-3.6\Release\native\common\jp_proxy.obj build\temp.win-amd64-3.6\Release\native\common\jp_reference.obj build\temp.win-amd64-3.6\Release\native\common\jp_referencequeue.obj build\temp.win-amd64-3.6\Release\native\common\jp_typemanager.obj build\temp.win-amd64-3.6\Release\native\common\jp_typename.obj build\temp.win-amd64-3.6\Release\native\common\jp_voidtype.obj build\temp.win-amd64-3.6\Release\native\python\jpype_javaarray.obj build\temp.win-amd64-3.6\Release\native\python\jpype_javaclass.obj build\temp.win-amd64-3.6\Release\native\python\jpype_javanio.obj build\temp.win-amd64-3.6\Release\native\python\jpype_module.obj build\temp.win-amd64-3.6\Release\native\python\jpype_python.obj build\temp.win-amd64-3.6\Release\native\python\pythonenv.obj build\temp.win-amd64-3.6\Release\native\python\py_class.obj build\temp.win-amd64-3.6\Release\native\python\py_field.obj build\temp.win-amd64-3.6\Release\native\python\py_hostenv.obj build\temp.win-amd64-3.6\Release\native\python\py_method.obj build\temp.win-amd64-3.6\Release\native\python\py_monitor.obj /OUT:build\lib.win-amd64-3.6\_jpype.cp36-win_amd64.pyd /IMPLIB:build\temp.win-amd64-3.6\Release\native\common\_jpype.cp36-win_amd64.lib
+jpype_python.obj : warning LNK4197: 多次指定导出“PyInit__jpype”；使用第一个规范
+  正在创建库 build\temp.win-amd64-3.6\Release\native\common\_jpype.cp36-win_amd64.lib 和对象 build\temp.win-amd64-3.6\Release\native\common\_jpype.cp36-win_amd64.exp
+正在生成代码
+已完成代码的生成
+LINK : fatal error LNK1158: 无法运行“rc.exe”
+error: command 'D:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\BIN\\x86_amd64\\link.exe' failed with exit status 1158
+
+这个是由于link.exe无法找到rc.exe文件导致，直接将rc.exe rc rcdll.dll 文件copy到D:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin，注意rc.exe原始文件的目录可能不止一个，要确定自己系统的版本，运行看下rc.exe是不是 能正常运行

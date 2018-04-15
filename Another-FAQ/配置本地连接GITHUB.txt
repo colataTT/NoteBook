@@ -1,0 +1,19 @@
+GITHUB 本地配置：
+1.安装GIT
+2.首先你需要注册一个github账户
+3.配置GIT账号信息
+在终端或CMD命令号中输入如下命令
+git config --global user.name trigkit4  
+git config --global user.email 345823102@qq.com
+4.创建本地SSH
+在终端或cmd输入以下命令行：
+ssh-keygen -t rsa -C "xxx@xxx.com"
+接着一路回车搞定
+5.将ssh配置到GitHub中
+C:\Users\自己电脑用户名\.ssh目中打开
+然后用记事本打开id_rsa.pub，将里面的全部代码复制到github的SSH中
+登陆github网站，点击Settings——SSH keys——点击右侧的Add SSH key ，接下去你懂得
+6.验证GITHUB
+ssh -T git@github.com
+Hi user.name! You've successfully authenticated, but GitHub does not provide shell access.
+
